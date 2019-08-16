@@ -12,16 +12,13 @@ import XCTest
 final class ValueFormatterTests: XCTestCase {
 
     struct LameFormatter: UICircularRingValueFormatter {
-        func string(for value: Any) -> String? {
-            guard let value = value as? CGFloat else { return nil }
+        func string(for value: TimeInterval) -> String? {
             return "Lame \(value)"
         }
     }
 
     func testCustomFormatter() {
         let formatter = LameFormatter()
-        XCTAssertEqual(formatter.string(for: CGFloat(69.420))!, "Lame 69.42")
-        XCTAssertNil(formatter.string(for: "Wow this should fail!"))
+        XCTAssertEqual(formatter.string(for: TimeInterval(69.420))!, "Lame 69.42")
     }
-
 }

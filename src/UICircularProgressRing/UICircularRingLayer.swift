@@ -388,7 +388,7 @@ class UICircularRingLayer: CAShapeLayer {
         valueLabel.font = ring.font
         valueLabel.textAlignment = .center
         valueLabel.textColor = ring.fontColor
-        valueLabel.text = valueFormatter?.string(for: value)
+        valueLabel.text = valueFormatter?.string(for: value.interval)
         ring.willDisplayLabel(label: valueLabel)
         valueLabel.sizeToFit()
 

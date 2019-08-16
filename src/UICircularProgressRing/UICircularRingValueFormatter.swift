@@ -18,7 +18,7 @@ import Foundation
  */
 public protocol UICircularRingValueFormatter {
     /// returns a string for the given object
-    func string(for value: Any) -> String?
+    func string(for value: TimeInterval) -> String?
 }
 
 // MARK: UICircularTimerRingFormatter
@@ -61,9 +61,8 @@ public struct UICircularTimerRingFormatter: UICircularRingValueFormatter {
     // MARK: API
 
     /// formats the value of the ring using the date components formatter with given units/style
-    public func string(for value: Any) -> String? {
-        guard let value = value as? CGFloat else { return nil }
-        return formatter.string(from: value.interval)
+    public func string(for value: TimeInterval) -> String? {
+        return formatter.string(from: value)
     }
 }
 
@@ -146,9 +145,7 @@ public struct UICircularProgressRingFormatter: UICircularRingValueFormatter {
     // MARK: API
 
     /// formats the value of the progress ring using the given properties
-    public func string(for value: Any) -> String? {
-        guard let value = value as? CGFloat else { return nil }
-
+    public func string(for value: TimeInterval) -> String? {
         if rightToLeft {
             if showFloatingPoint {
                 return "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)

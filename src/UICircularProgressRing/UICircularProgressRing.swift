@@ -25,7 +25,7 @@
 
 import UIKit
 
-final public class UICircularProgressRing: UICircularRing {
+open class UICircularProgressRing: UICircularRing {
     // MARK: Members
 
     /**
@@ -61,7 +61,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @IBInspectable public var value: CGFloat = 0 {
+    @IBInspectable open var value: CGFloat = 0 {
         didSet {
             if value < minValue {
                 #if DEBUG
@@ -92,7 +92,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    public var currentValue: CGFloat? {
+    open var currentValue: CGFloat? {
         return isAnimating ? layer.presentation()?.value(forKey: .value) as? CGFloat : value
     }
 
@@ -112,7 +112,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @IBInspectable public var minValue: CGFloat = 0.0 {
+    @IBInspectable open var minValue: CGFloat = 0.0 {
         didSet { ringLayer.minValue = minValue }
     }
 
@@ -131,7 +131,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @IBInspectable public var maxValue: CGFloat = 100.0 {
+    @IBInspectable open var maxValue: CGFloat = 100.0 {
         didSet { ringLayer.maxValue = maxValue }
     }
 
@@ -144,7 +144,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    public var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut {
+    open var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut {
         didSet { ringLayer.animationTimingFunction = animationTimingFunction }
     }
 
@@ -158,7 +158,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    public var valueFormatter: UICircularRingValueFormatter = UICircularProgressRingFormatter() {
+    open var valueFormatter: UICircularRingValueFormatter = UICircularProgressRingFormatter() {
         didSet { ringLayer.valueFormatter = valueFormatter }
     }
 

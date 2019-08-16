@@ -25,7 +25,7 @@
 
 import UIKit
 
-final public class UICircularTimerRing: UICircularRing {
+open class UICircularTimerRing: UICircularRing {
     // MARK: Members
 
     /**
@@ -33,7 +33,7 @@ final public class UICircularTimerRing: UICircularRing {
 
      Default formatter is of type `UICircularTimerRingFormatter`.
      */
-    public var valueFormatter: UICircularRingValueFormatter = UICircularTimerRingFormatter() {
+    open var valueFormatter: UICircularRingValueFormatter = UICircularTimerRingFormatter() {
         didSet { ringLayer.valueFormatter = valueFormatter }
     }
 
@@ -48,9 +48,10 @@ final public class UICircularTimerRing: UICircularRing {
 
     // MARK: Private Members
 
+    private var startTime: TimeInterval = 0
     /// This is the max value for the layer, which corresponds
     /// to the time that was set for the timer
-    private var time: TimeInterval = 60
+    private var endTime: TimeInterval = 60
 
     /// the elapsed time since calling `startTimer`
     private var elapsedTime: TimeInterval? {
@@ -88,7 +89,8 @@ final public class UICircularTimerRing: UICircularRing {
         ringLayer.maxValue = endTime.float
 
         // store time and handler
-        time = endTime
+        self.startTime = startTime
+        self.endTime = endTime
         timerHandler = handler
     }
 
@@ -130,7 +132,7 @@ final public class UICircularTimerRing: UICircularRing {
         ringLayer.ring = self
         ringLayer.minValue = 0
         ringLayer.value = 0
-        ringLayer.maxValue = time.float
+        ringLayer.maxValue = endTime.float
         ringLayer.valueFormatter = valueFormatter
         ringLayer.animationTimingFunction = .linear
     }
@@ -150,4 +152,10 @@ public extension UICircularTimerRing {
         /// the timer was paused called `pauseTimer`
         case paused(elpasedTime: TimeInterval?)
     }
+}
+
+public extension UICircularTimerRing {
+    var startTimeValue: TimeInterval { return self.startTime }
+    var endTimeValue: TimeInterval { return self.endTime }
+    var elapsedTimeValue: TimeInterval { return self.elapsedTime ?? 0 }
 }
